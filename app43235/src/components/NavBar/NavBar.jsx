@@ -1,8 +1,10 @@
 import CartWidget from "../CartWidget/CartWidget"
+import Logo from "../Logo/Logo"
 
 const NavBar = () => {
     return (
         <nav>
+            <Logo/>
             <h3>Tienda Drogueria INSA </h3>
             <div>
                 <button>Insumos médicos</button>

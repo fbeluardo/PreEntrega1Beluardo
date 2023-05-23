@@ -14,6 +14,7 @@ const NavBar = () => {
                 <button>Alcoholes</button>
                 <button>Medicamentos</button>
             </div>
+            <br />
             <CartWidget/>
         </nav>
     )

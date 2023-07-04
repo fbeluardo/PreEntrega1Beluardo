@@ -1,22 +1,54 @@
+import { useEffect, useState, memo } from 'react'
+import ItemList from '../ItemList/ItemList'
+import ItemGrid from '../ItemGrid/ItemGrid'
+import { useParams } from 'react-router-dom'
 import './ItemListContainer.css'
-import { getDocs, collection } from 'firebase/firestore'
+
+import { getDocs, collection, query, where } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
-import { useEffect } from 'react'
 
-useEffect(() => {
-const productosRef = collection(db, 'productos')
-
-getDocs(productosRef)
-.then(snapshot => 
-    console.log (snapshot)
-
-})
+const ItemListMemo = memo(ItemList)
 
 const ItemListContainer = ({ greeting }) => {
+    const [productos, establecerProductos] = useState([])
+    const [desplegarGrid, establecerdisplayGrid] = useState(false)
+    const [loading, setLoading] = useState(true)
+
+    const { categoriaId } = useParams()
+
+    useEffect(() => {
+        const productosRef = !categoriaId 
+            ? collection(db, 'productos')
+            : query(collection(db, 'productos'), where('categoria', '==', categoriaId))
+
+        setLoading(true)
+        getDocs(productosRef)
+            .then(querySnapshot =>{
+                const productosAdaptados = querySnapshot.docs.map(doc => {
+                    const campos = doc.data()
+                    return { id: doc.id, ...campos }
+                }) 
+                
+                establecerProductos(productosAdaptados)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+            
+    }, [categoriaId])
+    
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
+
     return (
-        <div className='Saludo'>
+        <div>
             <h1>{greeting}</h1>
+            <button onClick={() => establecerdisplayGrid(true)}>grilla</button>
+            <button onClick={() => establecerdisplayGrid(false)}>lista</button>
+            { desplegarGrid ? <ItemGrid productos={productos}/> : <ItemListMemo productos={productos}/>}
         </div>
     )
 }
+
 export default ItemListContainer

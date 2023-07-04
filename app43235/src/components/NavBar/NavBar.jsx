@@ -11,8 +11,11 @@ const NavBar = () => {
             <h3>Tienda Drogueria INSA </h3>
             <div className="btn">
                 <Link to={'/categoria/insumos medicos'}>Descartables</Link>
+                <br />
                 <Link to={'/categoria/antisepticos'}>Antisepticos</Link>
+                <br />
                 <Link to={'/categoria/alcoholes'}>Alcoholes</Link>
+                <br />
 		        <Link to={'/categoria/medicamentos'}>Medicamentos</Link>
             </div>
             <br />

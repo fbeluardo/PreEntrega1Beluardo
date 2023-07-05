@@ -1,4 +1,4 @@
-import logo from './assets/Portada OK.jpg'
+import logo from './assets/Portada OK-PhotoRoom.png-PhotoRoom.png'
 
 const Logo = () => {
     return (

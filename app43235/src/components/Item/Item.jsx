@@ -5,7 +5,7 @@ import './Item.css';
 
 const Item = ({ id, nombre, imagen, precio }) => {
   const { addItem } = useCart();
-  const [quantity, setQuantity] = useState(1); // State for the quantity
+  const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (e) => {
     const newQuantity = parseInt(e.target.value, 10);
@@ -20,7 +20,7 @@ const Item = ({ id, nombre, imagen, precio }) => {
       precio,
       quantity,
     };
-    addItem(productToAdd, quantity); // Add the selected quantity of the product
+    addItem(productToAdd, quantity);
   };
 
   return (
@@ -43,4 +43,3 @@ const Item = ({ id, nombre, imagen, precio }) => {
 };
 
 export default Item;
-

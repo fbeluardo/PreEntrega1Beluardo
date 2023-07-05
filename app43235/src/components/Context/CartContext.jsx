@@ -10,14 +10,12 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addItem = (productToAdd, quantity) => {
-    const existingProduct = cart.find((product) => product.id === productToAdd.id);
+    const existingProductIndex = cart.findIndex((product) => product.id === productToAdd.id);
 
-    if (existingProduct) {
-      setCart((prev) =>
-        prev.map((product) =>
-          product.id === productToAdd.id ? { ...product, quantity: product.quantity + quantity } : product
-        )
-      );
+    if (existingProductIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingProductIndex].quantity += quantity;
+      setCart(updatedCart);
     } else {
       setCart((prev) => [...prev, { ...productToAdd, quantity }]);
     }

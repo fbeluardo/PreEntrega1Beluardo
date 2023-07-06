@@ -9,7 +9,7 @@ const CartWidget = () => {
     return (
         <div>
             <img src={cart} alt='cart-widget'/>
-            <Link><Cart></Cart></Link>
+            <Link to="/cart"></Link>
             {totalQuantity}
         </div>
     )

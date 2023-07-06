@@ -42,7 +42,7 @@ const Checkout = ({ cartItems, totalPurchase }) => {
         const prodQuantity = productAddedToCart?.quantity;
 
         if (stockDb >= prodQuantity) {
-          //updateDoc
+          
           batch.update(doc.ref, { stock: stockDb - prodQuantity });
         } else {
           outOfStock.push({ id: doc.id, ...fieldsDoc });

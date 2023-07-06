@@ -4,7 +4,7 @@ import { getDoc, doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
 import ItemCount from '../ItemCount/ItemCount';
 import Checkout from '../Checkout/Checkout';
-import { CartContext } from '../Context/CartContext'
+import CartContext from '../Context/CartContext'
 
 const ItemDetail = () => {
   const [product, setProduct] = useState(null);

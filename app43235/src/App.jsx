@@ -5,10 +5,12 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import Navbar from './components/NavBar/NavBar';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
+import { NotificationProvider } from './notification/NotificationService';
 
 function App() {
   return (
     <BrowserRouter>
+    <NotificationProvider>
       <CartProvider>
         <Navbar />
         <Routes>
@@ -19,6 +21,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </CartProvider>
+      </NotificationProvider>
     </BrowserRouter>
   );
 }

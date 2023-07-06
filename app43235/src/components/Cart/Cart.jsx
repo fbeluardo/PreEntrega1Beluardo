@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
 
 const Cart = () => {
-  const { cart, totalQuantity } = useCart();
+  const { cart, totalQuantity, totalPurchase, clearCart } = useCart();
 
   return (
     <div>
@@ -18,8 +18,13 @@ const Cart = () => {
               </li>
             ))}
           </ul>
-          <p>Total: {totalQuantity}</p>
-          <Link to="/checkout">Realizar pedido</Link>
+          <p>Total de productos: {totalQuantity}</p>
+          <p>Total de la compra: {totalPurchase}</p>
+
+          
+          <Link to="/checkout">Realizar pedido</Link><br></br><br></br>
+         
+          <button onClick={clearCart}>Limpiar carrito</button>
         </>
       )}
     </div>

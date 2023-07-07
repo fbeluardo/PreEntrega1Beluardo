@@ -69,8 +69,8 @@ const Checkout = () => {
   };
 
   const calculateTotal = () => {
-    // Implement your logic to calculate the total purchase amount
-    // based on the items in the cart array
+    
+    
     let total = 0;
     cart.forEach(item => {
       total += item.price * item.quantity;

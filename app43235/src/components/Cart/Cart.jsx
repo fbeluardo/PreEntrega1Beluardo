@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
+import './Cart.css'
 
 const Cart = () => {
   const { cart, totalQuantity, totalPurchase, clearCart } = useCart();
@@ -14,7 +15,7 @@ const Cart = () => {
           <ul>
             {cart.map((product) => (
               <li key={product.id}>
-                {product.nombre} - Cantidad: {product.quantity}
+              {product.nombre} - Cantidad: {product.quantity}
               </li>
             ))}
           </ul>

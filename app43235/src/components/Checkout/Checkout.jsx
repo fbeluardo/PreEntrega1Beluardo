@@ -49,7 +49,7 @@ const Checkout = () => {
       });
 
       if (outOfStock.length === 0) {
-        batch.commit();
+        await batch.commit(); // Wait for the batch commit to complete
 
         const ordersRef = collection(db, 'orders');
 
@@ -59,18 +59,16 @@ const Checkout = () => {
         clearCart();
         navigate('/');
       } else {
-        setNotification('error', 'hay productos que no tienen stock');
+        setNotification('error', 'Hay productos que no tienen stock');
       }
     } catch (error) {
-      setNotification('error', 'hubo un error en la generacion de la orden');
+      setNotification('error', 'Hubo un error en la generación de la orden');
     } finally {
       setLoading(false);
     }
   };
 
   const calculateTotal = () => {
-    
-    
     let total = 0;
     cart.forEach(item => {
       total += item.price * item.quantity;
@@ -79,7 +77,7 @@ const Checkout = () => {
   };
 
   if (loading) {
-    return <h1>Se esta generando su orden...</h1>;
+    return <h1>Se está generando su orden...</h1>;
   }
 
   return (
@@ -90,6 +88,4 @@ const Checkout = () => {
     </>
   );
 };
-
-export default Checkout;
-
+export default Checkout

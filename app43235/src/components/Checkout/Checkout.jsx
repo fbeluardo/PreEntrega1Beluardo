@@ -1,9 +1,9 @@
-import { collection, query, where, documentId, getDocs, writeBatch, addDoc } from "firebase/firestore"
-import { useCart } from "../Context/CartContext"
-import { db } from "../../services/firebase/firebaseConfig"
-import { useNotification } from "../../notification/NotificationService"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { collection, query, where, documentId, getDocs, writeBatch, addDoc } from "firebase/firestore";
+import { useCart } from "../Context/CartContext";
+import { db } from "../../services/firebase/firebaseConfig";
+import { useNotification } from "../../notification/NotificationService";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(false);
@@ -11,22 +11,29 @@ const Checkout = () => {
   const { setNotification } = useNotification();
   const navigate = useNavigate();
 
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
+  };
+
   const createOrder = async () => {
     setLoading(true);
     const objOrder = {
-      buyer: {
-        name: 'Federico Beluardo',
-        phone: '1234343535',
-        email: 'info@drogueriainsa.com.ar'
-      },
+      buyer: customerInfo,
       items: cart,
-      total: calculateTotal()
+      total: calculateTotal(),
     };
 
     try {
-      const ids = cart.map(prod => prod.id);
+      const ids = cart.map((prod) => prod.id);
 
-      const productsRef = query(collection(db, 'products'), where(documentId(), 'in', ids));
+      const productsRef = query(collection(db, "products"), where(documentId(), "in", ids));
 
       const { docs } = await getDocs(productsRef);
 
@@ -34,11 +41,11 @@ const Checkout = () => {
 
       const outOfStock = [];
 
-      docs.forEach(doc => {
+      docs.forEach((doc) => {
         const fieldsDoc = doc.data();
         const stockDb = fieldsDoc.stock;
 
-        const productAddedToCart = cart.find(prod => prod.id === doc.id);
+        const productAddedToCart = cart.find((prod) => prod.id === doc.id);
         const prodQuantity = productAddedToCart?.quantity;
 
         if (stockDb >= prodQuantity) {
@@ -51,18 +58,18 @@ const Checkout = () => {
       if (outOfStock.length === 0) {
         await batch.commit(); // Wait for the batch commit to complete
 
-        const ordersRef = collection(db, 'orders');
+        const ordersRef = collection(db, "orders");
 
         const { id } = await addDoc(ordersRef, objOrder);
 
-        setNotification('success', 'La orden fue generada correctamente, el id es: ' + id);
+        setNotification("success", "La orden fue generada correctamente, el id es: " + id);
         clearCart();
-        navigate('/');
+        navigate("/");
       } else {
-        setNotification('error', 'Hay productos que no tienen stock');
+        setNotification("error", "Hay productos que no tienen stock");
       }
     } catch (error) {
-      setNotification('error', 'Hubo un error en la generación de la orden');
+      setNotification("error", "Hubo un error en la generación de la orden");
     } finally {
       setLoading(false);
     }
@@ -70,7 +77,7 @@ const Checkout = () => {
 
   const calculateTotal = () => {
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item) => {
       total += item.price * item.quantity;
     });
     return total;
@@ -84,8 +91,27 @@ const Checkout = () => {
     <>
       <h1>Checkout</h1>
       <h2>Formulario</h2>
-      <button onClick={createOrder}>Generar orden de compra</button>
+      <form>
+        <label>
+          Nombre:
+          <input type="text" name="name" value={customerInfo.name} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Teléfono:
+          <input type="text" name="phone" value={customerInfo.phone} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="text" name="email" value={customerInfo.email} onChange={handleChange} />
+        </label>
+        <br />
+        <button onClick={createOrder}>Generar orden de compra</button>
+      </form>
     </>
   );
 };
-export default Checkout
+
+export default Checkout;
+

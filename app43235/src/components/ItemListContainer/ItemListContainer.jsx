@@ -42,7 +42,7 @@ const ItemListContainer = ({ greeting }) => {
     }
 
     return (
-        <div>
+        <div className='list-container'>
             <h1>{greeting}</h1>
             { desplegarGrid ? <ItemGrid productos={productos}/> : <ItemListMemo productos={productos}/>}
         </div>

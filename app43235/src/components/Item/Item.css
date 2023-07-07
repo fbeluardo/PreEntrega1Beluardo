@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .item {
     display: flex;
     flex-direction: column;
@@ -30,5 +32,15 @@
   
   .item a:hover {
     color: #555;
+  }
+  .item button {
+    background-color: rgb(31, 6, 122);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    margin-top: 10px;
+    font-size: 12px;
+
   }
   

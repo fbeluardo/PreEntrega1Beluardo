@@ -5,9 +5,9 @@ import { useNotification } from "../../notification/NotificationService"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Checkout = ({ cartItems, totalPurchase }) => {
+const Checkout = () => {
   const [loading, setLoading] = useState(false);
-  const { clearCart } = useCart();
+  const { cart, clearCart } = useCart();
   const { setNotification } = useNotification();
   const navigate = useNavigate();
 
@@ -19,12 +19,12 @@ const Checkout = ({ cartItems, totalPurchase }) => {
         phone: '1234343535',
         email: 'info@drogueriainsa.com.ar'
       },
-      items: cartItems,
-      total: totalPurchase
+      items: cart,
+      total: calculateTotal()
     };
 
     try {
-      const ids = cartItems.map(prod => prod.id);
+      const ids = cart.map(prod => prod.id);
 
       const productsRef = query(collection(db, 'products'), where(documentId(), 'in', ids));
 
@@ -38,11 +38,10 @@ const Checkout = ({ cartItems, totalPurchase }) => {
         const fieldsDoc = doc.data();
         const stockDb = fieldsDoc.stock;
 
-        const productAddedToCart = cartItems.find(prod => prod.id === doc.id);
+        const productAddedToCart = cart.find(prod => prod.id === doc.id);
         const prodQuantity = productAddedToCart?.quantity;
 
         if (stockDb >= prodQuantity) {
-          
           batch.update(doc.ref, { stock: stockDb - prodQuantity });
         } else {
           outOfStock.push({ id: doc.id, ...fieldsDoc });
@@ -69,6 +68,16 @@ const Checkout = ({ cartItems, totalPurchase }) => {
     }
   };
 
+  const calculateTotal = () => {
+    // Implement your logic to calculate the total purchase amount
+    // based on the items in the cart array
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+    });
+    return total;
+  };
+
   if (loading) {
     return <h1>Se esta generando su orden...</h1>;
   }
@@ -83,3 +92,4 @@ const Checkout = ({ cartItems, totalPurchase }) => {
 };
 
 export default Checkout;
+

@@ -44,8 +44,6 @@ const ItemListContainer = ({ greeting }) => {
     return (
         <div>
             <h1>{greeting}</h1>
-            <button onClick={() => establecerdisplayGrid(true)}>grilla</button>
-            <button onClick={() => establecerdisplayGrid(false)}>lista</button>
             { desplegarGrid ? <ItemGrid productos={productos}/> : <ItemListMemo productos={productos}/>}
         </div>
     )

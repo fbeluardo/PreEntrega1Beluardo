@@ -19,7 +19,7 @@ const Cart = () => {
             ))}
           </ul>
           <p>Total de productos: {totalQuantity}</p>
-          <p>Total de la compra: {totalPurchase}</p>
+          <p>Total de la compra: {totalPurchase} pesos</p>
 
           
           <Link to="/checkout">Realizar pedido</Link><br></br><br></br>

@@ -4,12 +4,13 @@ import { getDoc, doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
 import ItemCount from '../ItemCount/ItemCount';
 import Checkout from '../Checkout/Checkout';
-import CartContext from '../Context/CartContext'
+import { useCart } from '../Context/CartContext';
 
 const ItemDetail = () => {
   const [product, setProduct] = useState(null);
   const [stock, setStock] = useState(0);
   const { itemId } = useParams();
+  const { addItem, clearCart } = useCart();
 
   useEffect(() => {
     const productRef = doc(db, 'productos', itemId);
@@ -24,15 +25,14 @@ const ItemDetail = () => {
     return () => unsubscribe();
   }, [itemId]);
 
-  const handleAddToCart = (addItem, count) => {
+  const handleAddToCart = (count) => {
     if (count > stock) {
-      
       return;
     }
 
     const itemToAdd = {
       id: product.id,
-      name: product.nombre,
+      nombre: product.nombre,
       price: product.precio,
       quantity: count
     };
@@ -46,24 +46,21 @@ const ItemDetail = () => {
   }
 
   return (
-    <CartContext.Consumer>
-      {({ addItem }) => (
-        <div className="item-detail">
-          <img src={product.imagen} alt={product.nombre} />
-          <p>${product.precio}</p>
-          <h1>{product.nombre}</h1>
-          <p>{product.descripcion}</p>
-         
-          <ItemCount stock={stock} onAdd={(count) => handleAddToCart(addItem, count)} />
+    <div className="item-detail">
+      <img src={product.imagen} alt={product.nombre} />
+      <p>${product.precio}</p>
+      <h1>{product.nombre}</h1>
+      <p>{product.descripcion}</p>
 
-          <div className="cart-items">
-            <h2>Cart Items:</h2>
-            
-          </div>
-         
-        </div>
-      )}
-    </CartContext.Consumer>
+      <ItemCount stock={stock} onAdd={handleAddToCart} />
+
+      <div className="cart-items">
+        <h2>Productos del Carrito</h2>
+        {/* Display cart items */}
+      </div>
+
+      <button onClick={clearCart}>Limpiar Carrito</button>
+    </div>
   );
 };
 

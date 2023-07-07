@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <nav>
             <Logo/>
-            <h3>Tienda Drogueria INSA </h3>
+            <h3>Tienda Droguería INSA </h3>
             <div className="btn">
                 <Link to={'/categoria/insumos medicos'}>Descartables</Link>
                 <br />

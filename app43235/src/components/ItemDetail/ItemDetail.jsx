@@ -34,7 +34,7 @@ const ItemDetail = () => {
     const itemToAdd = {
       id: product.id,
       nombre: product.nombre,
-      price: product.precio,
+      precio: product.precio,
       quantity: count
     };
 

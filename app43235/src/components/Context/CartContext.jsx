@@ -11,16 +11,27 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addItem = (productToAdd, quantity) => {
-    const existingProductIndex = cart.findIndex((product) => product.id === productToAdd.id);
-
-    if (existingProductIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += quantity;
+    const existingProduct = cart.find((product) => product.id === productToAdd.id);
+  
+    if (existingProduct) {
+      const updatedCart = cart.map((product) => {
+        if (product.id === productToAdd.id) {
+          return {
+            ...product,
+            quantity: product.quantity + quantity,
+          };
+        }
+        return product;
+      });
       setCart(updatedCart);
     } else {
-      setCart((prev) => [...prev, { ...productToAdd, quantity }]);
+      setCart((prev) => [
+        ...prev,
+        { ...productToAdd, quantity },
+      ]);
     }
   };
+  
 
   const clearCart = () => {
     setCart([]);
@@ -31,12 +42,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalPurchase = () => {
-    return cart.reduce((total, product) => total + product.quantity * product.precio, 0);
+    return cart.reduce((total, product) => total + product.quantity * parseFloat(product.precio), 0);
   };
 
   const totalQuantity = getTotalQuantity();
   const totalPurchase = getTotalPurchase();
-  
 
   return (
     <CartContext.Provider value={{ cart, totalQuantity, totalPurchase, addItem, clearCart }}>
@@ -44,10 +54,9 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
 export const useCart = () => {
   return useContext(CartContext);
 };
 
-
 export default CartContext;
-

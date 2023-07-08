@@ -51,16 +51,15 @@ const ItemDetail = () => {
       <img src={product.imagen} alt={product.nombre} />
       <p>${product.precio}</p>
       <h1>{product.nombre}</h1>
-      <p>{product.descripcion}</p>
 
       <ItemCount stock={stock} onAdd={handleAddToCart} />
 
       <div className="cart-items">
-        <h2>Productos del Carrito</h2>
-        {/* Display cart items */}
+        <h2></h2>
+    
       </div>
 
-      <button onClick={clearCart}>Limpiar Carrito</button>
+      <button onClick={clearCart}className='button'>Limpiar Carrito</button>
     </div>
   );
 };

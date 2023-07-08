@@ -10,13 +10,13 @@ const NavBar = () => {
             <Logo/>
             <h3>Tienda Droguería INSA </h3>
             <div className="menu">
-                <Link to={'/categoria/insumos medicos'}>Descartables</Link>
+                <Link to={'/categoria/insumos medicos'} className="menu-link">Descartables</Link>
                 <br />
-                <Link to={'/categoria/antisepticos'}>Antisepticos</Link>
+                <Link to={'/categoria/antisepticos'}className="menu-link">Antisepticos</Link>
                 <br />
-                <Link to={'/categoria/alcoholes'}>Alcoholes</Link>
+                <Link to={'/categoria/alcoholes'}className="menu-link">Alcoholes</Link>
                 <br />
-		        <Link to={'/categoria/medicamentos'}>Medicamentos</Link>
+		        <Link to={'/categoria/medicamentos'}className="menu-link">Medicamentos</Link>
             </div>
             <br />
             <CartWidget/>

@@ -7,11 +7,13 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-size: 15px;
+        margin: 5px;
+       
       }
       
       .cart ul {
         list-style: none;
-        padding: 0;
       }
       
       .cart li {
@@ -32,9 +34,13 @@
         color: white;
         border-radius: 5px;
         display: flex;
-        margin-top: 10px;
+        margin-top: 5px;
         font-size: 16px;
         text-decoration: none;
         font-family: 'Roboto', sans-serif;
       }
-      
+      .centered-button button {
+        text-decoration: none;
+        }
+
+    

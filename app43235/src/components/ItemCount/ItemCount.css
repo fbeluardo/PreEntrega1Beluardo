@@ -2,5 +2,32 @@
 
 .detalle {
     font-family: 'Roboto', sans-serif;
-    font-size: 10px;
+    font-size: 50px;
 }
+
+.contador {
+    background-color: rgb(31, 6, 122);
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .decrement-button {
+    background-color: rgb(31, 6, 122);
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .increment-button {
+    background-color: rgb(31, 6, 122);
+    color: white;
+    border-radius: 5px;
+  }
+  contador agregar-carrito {
+    background-color: rgb(31, 6, 122);
+    color: white;
+    border-radius: 5px;
+  }
+  
+     
+
+

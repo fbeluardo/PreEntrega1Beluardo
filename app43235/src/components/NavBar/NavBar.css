@@ -33,6 +33,11 @@ nav {
  .menu {
   text-decoration: none;
  }
+ .menu-link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+ }
 
 
    

@@ -4,3 +4,42 @@
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .form label {
+    margin-bottom: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    padding-right: 5px;
+    margin-right: 10px;
+  }
+  
+  .form input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    border-color: black;
+  }
+  
+  .form button {
+    padding: 10px 20px;
+    background-color: #2174bd;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    font-weight: bold;
+
+  }
+  
+  .form button:hover {
+    background-color: #0f3cd0;
+  }
+  

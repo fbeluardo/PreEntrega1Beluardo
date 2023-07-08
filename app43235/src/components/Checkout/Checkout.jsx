@@ -90,21 +90,20 @@ const Checkout = () => {
 
   return (
     <>
-      <h1>Checkout</h1>
-      <h2>Formulario</h2>
-      <form>
+      <h1>Ingrese datos para la compra!</h1>
+      <form className="form">
         <label>
-          Nombre:
+          Nombre <br />
           <input type="text" name="name" value={customerInfo.name} onChange={handleChange} />
         </label>
         <br />
         <label>
-          Teléfono:
+          Teléfono <br />
           <input type="text" name="phone" value={customerInfo.phone} onChange={handleChange} />
         </label>
         <br />
         <label>
-          Email:
+          Email <br />
           <input type="text" name="email" value={customerInfo.email} onChange={handleChange} />
         </label>
         <br />

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
+import './ItemDetailContainer.css'
 
 const ItemDetailContainer = () => {
     const [producto, establecerProducto] = useState(null)
@@ -25,7 +26,7 @@ const ItemDetailContainer = () => {
     }, [itemId])
 
     return (
-        <div>
+        <div className='detalle'>
             <h1>Detalle de producto</h1>
             <ItemDetail {...producto} />
         </div>

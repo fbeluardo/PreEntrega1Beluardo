@@ -7,10 +7,10 @@ const Cart = () => {
   const { cart, totalQuantity, totalPurchase, clearCart } = useCart();
 
   return (
-    <div>
+    <div className='cart'>
       <h1>Carrito de compras</h1>
       {cart.length === 0 ? (
-        <p>El carrito está vacío</p>
+        <p>El carrito está vacío!</p>
       ) : (
         <>
           <ul>
@@ -23,11 +23,13 @@ const Cart = () => {
           <p>Total de productos: {totalQuantity}</p>
           <p>Total de la compra: {totalPurchase} pesos</p>
 
-          <button onClick={clearCart}>Limpiar carrito</button>
+          <button onClick={clearCart} className='button'>Limpiar carrito</button>
           <br /><br />
+          <div className='centered-button'>
           <Link to="/checkout">
-            <button>Realizar pedido</button>
+            <button className='button'>Realizar pedido</button>
           </Link>
+          </div>
         </>
       )}
     </div>

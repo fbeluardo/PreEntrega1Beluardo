@@ -37,10 +37,17 @@
     background-color: rgb(31, 6, 122);
     color: white;
     border-radius: 5px;
-    font-weight: bold;
     display: flex;
     margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 3px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .ver-detalle {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
     font-size: 12px;
-
   }
   

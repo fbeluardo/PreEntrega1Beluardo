@@ -37,7 +37,9 @@ const Item = ({ id, nombre, imagen, precio }) => {
         />
         <button onClick={handleAddToCart}>Agregar al carrito</button>
       </div>
-      <Link to={`/item/${id}`}>ver detalle</Link>
+      <div className='ver-detalle'>
+      <Link to={`/item/${id}`}>Ver detalle producto</Link>
+      </div>
     </div>
   );
 };

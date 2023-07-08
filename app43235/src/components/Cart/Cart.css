@@ -1,4 +1,40 @@
-.cart {
-    font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     
-}
+    .cart {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      
+      .cart ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .cart li {
+        margin-bottom: 10px;
+      }
+      
+      .cart button {
+        margin-top: 5px;
+      }
+      
+      .centered-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .button {
+        background-color: rgb(31, 6, 122);
+        color: white;
+        border-radius: 5px;
+        display: flex;
+        margin-top: 10px;
+        font-size: 16px;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+      }
+      

@@ -5,6 +5,7 @@ import { db } from '../../services/firebase/firebaseConfig';
 import ItemCount from '../ItemCount/ItemCount';
 import Checkout from '../Checkout/Checkout';
 import { useCart } from '../Context/CartContext';
+import './ItemDetail.css'
 
 const ItemDetail = () => {
   const [product, setProduct] = useState(null);
@@ -42,7 +43,7 @@ const ItemDetail = () => {
   };
 
   if (!product) {
-    return <h1>Cargando...</h1>;
+    return <h1 className='h1'>Cargando...</h1>;
   }
 
   return (

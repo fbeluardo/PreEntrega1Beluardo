@@ -4,6 +4,7 @@ import { db } from "../../services/firebase/firebaseConfig";
 import { useNotification } from "../../notification/NotificationService";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Checkout.css'
 
 const Checkout = () => {
   const [loading, setLoading] = useState(false);

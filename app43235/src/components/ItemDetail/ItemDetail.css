@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.item-detail {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+}
+
+.cart-items {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+}
+.cart-h1 {
+    font-family: 'Roboto', sans-serif;   
+}

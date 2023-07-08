@@ -30,6 +30,10 @@ nav {
  .nav-links {
    display: flex;
  }
+ .menu {
+  text-decoration: none;
+ }
+
 
    
  

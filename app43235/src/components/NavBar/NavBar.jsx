@@ -9,7 +9,7 @@ const NavBar = () => {
         <nav>
             <Logo/>
             <h3>Tienda Droguería INSA </h3>
-            <div className="btn">
+            <div className="menu">
                 <Link to={'/categoria/insumos medicos'}>Descartables</Link>
                 <br />
                 <Link to={'/categoria/antisepticos'}>Antisepticos</Link>

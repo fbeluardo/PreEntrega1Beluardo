@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { collection, query, where, documentId, getDocs, writeBatch, addDoc } from "firebase/firestore";
 import { useCart } from "../Context/CartContext";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useNotification } from "../../notification/NotificationService";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Checkout.css'
 
@@ -67,7 +67,9 @@ const Checkout = () => {
         clearCart();
         navigate("/");
       } else {
-        setNotification("error", "Hay productos que no tienen stock");
+        // Display notification for items out of stock
+        const outOfStockProducts = outOfStock.map((product) => product.nombre).join(", ");
+        setNotification("error", `Los siguientes productos no tienen suficiente stock: ${outOfStockProducts}`);
       }
     } catch (error) {
       setNotification("error", "Hubo un error en la generación de la orden");
@@ -114,4 +116,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
